@@ -21,3 +21,16 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# registry from swagger
+# {
+#   "username": "Armin23",
+#   "email": "armin23@example.com",
+#   "isMan": true,
+#   "age": 41,
+#   "ID": "63de9c18494f1da8068a9808"
+# }
+#  "password": "ArmiN_23",
+
+# Request URL
+# https://first-node-js-app-r.herokuapp.com/api/users/register

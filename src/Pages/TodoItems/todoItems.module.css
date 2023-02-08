@@ -1,0 +1,23 @@
+.listItems {
+  width: 500px;
+  height: 50px;
+  margin-bottom: 5px;
+  background: #FFC107;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 15px;
+  border-radius: 10px;
+  margin: 20px auto;
+}
+
+.listItems p {
+  padding: 10px;
+  position: relative;
+}
+
+.span {
+  cursor: pointer;
+  height: 30px;
+}
