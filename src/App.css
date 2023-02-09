@@ -12,8 +12,6 @@ body {
   background: #fff;
 }
 
-.done{
-  text-decoration:line-through;
-  
-  
+.done {
+  text-decoration: line-through;
 }

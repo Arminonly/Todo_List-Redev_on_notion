@@ -7,40 +7,41 @@ import { styles } from './styles';
 export default function RegisterPage() {
   const navigate = useNavigate();
   const onFinish = values => {
-    // console.log('Success:', values);
+    console.log('Success:', values);
     navigate('/todopage');
-   localStorage.setItem('register', JSON.stringify(values));
-   const url = 'https://first-node-js-app-r.herokuapp.com/api/users/register';
- fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: {
-      name: 'Armin',
-      username: 'Armin2023',
-      email: 'trancefamily2023@example.com',
-      isMan: false,
-      age: 41,
-      ID: '63de85f5494f1da8068a9777'
-    }
-  });
+    localStorage.setItem('register', JSON.stringify(values));
+    const url = 'https://first-node-js-app-r.herokuapp.com/api/users/register';
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: {
+        name: 'Armin',
+        username: 'Armin2023',
+        email: 'trancefamily2023@example.com',
+        isMan: false,
+        age: 41,
+        ID: '63de85f5494f1da8068a9777'
+      }
+    });
+
 
   };
   // const onRegistry = async () => {
-    // const url = 'https://first-node-js-app-r.herokuapp.com/api/users/register';
-    // const result = await fetch(url, {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: {
-    //     name: 'Armin',
-    //     username: 'Armin2023',
-    //     email: 'trancefamily2023@example.com',
-    //     isMan: false,
-    //     age: 41,
-    //     ID: '63de85f5494f1da8068a9777'
-    //   }
-    // });
-    // const data = await result.json();
-    // console.log(data);
+  // const url = 'https://first-node-js-app-r.herokuapp.com/api/users/register';
+  // const result = await fetch(url, {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: {
+  //     name: 'Armin',
+  //     username: 'Armin2023',
+  //     email: 'trancefamily2023@example.com',
+  //     isMan: false,
+  //     age: 41,
+  //     ID: '63de85f5494f1da8068a9777'
+  //   }
+  // });
+  // const data = await result.json();
+  // console.log(data);
   // };
   return (
     <div>

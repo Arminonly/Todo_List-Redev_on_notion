@@ -37,14 +37,13 @@ const Todopage = () => {
   //*редактировать задачу
   const editTodo = (text, id) => {
     const editText = [...todos];
-    editText.map((todo) => {
+    editText.map(todo => {
       if (todo.id === id) {
         todo.text = text;
       }
     });
     setTodos(editText);
   };
-
   //*задача ввыполнена
   const completedTodo = id => {
     const doneTodo = [...todos];
@@ -84,14 +83,12 @@ const Todopage = () => {
               </Space>
             </Content>
           </Space>
-          <div style={{ margin:'10px auto' }}>
+          <div style={{ margin: '10px auto' }}>
             <TodoItems
-              addTodo={addTodo}
-              completedTodo={completedTodo}
+              todos={todos}
               editTodo={editTodo}
               deleteTodo={deleteTodo}
-              todos={todos}
-              setTodos={setTodos}
+              completedTodo={completedTodo}
             />
           </div>
         </Layout>

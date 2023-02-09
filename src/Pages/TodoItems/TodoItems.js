@@ -3,12 +3,9 @@ import { motion } from 'framer-motion';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import s from './todoItems.module.css';
-export default function TodoItems({
-  todos,
-  complitedTodo,
-  editTodo,
-  deleteTodo
-}) {
+export default function TodoItems({todos,editTodo,deleteTodo,completedTodo}) {
+
+
   return (
     <>
       {todos && todos.length ? (
@@ -23,12 +20,12 @@ export default function TodoItems({
               whileHover={{ background: 'lime' }}
               className={s.listItems}
               key={todo.id}
-            >
+             >
               <p>
                 <span className={s.span}>
                   <input
                     type="checkbox"
-                    onChange={() => complitedTodo(todo.id)}
+                    onChange={()=>completedTodo(todo.id)}
                   />
                 </span>
               </p>
@@ -44,14 +41,14 @@ export default function TodoItems({
                   className={todo.complited ? 'done' : ''}
                   type="text"
                   value={todo.text}
-                  onChange={(e) => editTodo(e.target.value, todo.id)}
+                  onChange={(e)=>editTodo(e.target.value,todo.id)}
                 />
               </p>
               &nbsp;&nbsp;
               <p>
                 <span
                   style={{ cursor: 'pointer' }}
-                  onClick={() => deleteTodo(todo.id)}
+                  onClick={()=>deleteTodo(todo.id)}
                 >
                   <FontAwesomeIcon icon={faTrash} />
                 </span>
