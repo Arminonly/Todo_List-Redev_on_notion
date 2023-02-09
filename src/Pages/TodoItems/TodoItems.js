@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import s from './todoItems.module.css';
@@ -13,7 +14,16 @@ export default function TodoItems({
       {todos && todos.length ? (
         todos.map((todo) => {
           return (
-            <div className={s.listItems} key={todo.id}>
+            <motion.div
+              initial={{ y: -500 }}
+              animate={{ y: 0 }}
+              transition={{
+                delay: 0.1
+              }}
+              whileHover={{ background: 'lime' }}
+              className={s.listItems}
+              key={todo.id}
+            >
               <p>
                 <span className={s.span}>
                   <input
@@ -28,8 +38,8 @@ export default function TodoItems({
                   style={{
                     backgroundColor: 'transparent',
                     border: '0px',
-                    color: 'white',
-                    fontSize: '24px'
+                    fontSize: '24px',
+                    outline: 'none'
                   }}
                   className={todo.complited ? 'done' : ''}
                   type="text"
@@ -46,7 +56,7 @@ export default function TodoItems({
                   <FontAwesomeIcon icon={faTrash} />
                 </span>
               </p>
-            </div>
+            </motion.div>
           );
         })
       ) : (

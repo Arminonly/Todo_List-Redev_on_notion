@@ -46,7 +46,7 @@ const Todopage = () => {
   };
 
   //*задача ввыполнена
-  const complitedTodo = id => {
+  const completedTodo = id => {
     const doneTodo = [...todos];
     doneTodo.map(todo => {
       if (todo.id === id) {
@@ -87,7 +87,7 @@ const Todopage = () => {
           <div style={{ margin:'10px auto' }}>
             <TodoItems
               addTodo={addTodo}
-              complitedTodo={complitedTodo}
+              completedTodo={completedTodo}
               editTodo={editTodo}
               deleteTodo={deleteTodo}
               todos={todos}
