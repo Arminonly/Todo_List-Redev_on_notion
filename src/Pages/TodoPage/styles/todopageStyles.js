@@ -14,7 +14,7 @@ marginRight:'10px'
 };
 export const layoutStyle = {
   height: '100vh', 
-  overflow: 'hidden', 
+  overflow: 'auto', 
   marginTop: '15px',
   marginBottom: '15px',
   // backgroundColor: 'red'

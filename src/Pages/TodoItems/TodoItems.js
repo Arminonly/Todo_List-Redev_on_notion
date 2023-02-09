@@ -12,10 +12,10 @@ export default function TodoItems({todos,editTodo,deleteTodo,completedTodo}) {
         todos.map((todo) => {
           return (
             <motion.div
-              initial={{ y: -500 }}
-              animate={{ y: 0 }}
+              initial={{ x: -500, scale:0,opacity:0 }}
+              animate={{ x: 0,scale:1,opacity:1 }}
               transition={{
-                delay: 0.1
+                delay: 0.2
               }}
               whileHover={{ background: 'lime' }}
               className={s.listItems}
