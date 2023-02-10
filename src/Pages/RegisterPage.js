@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import { UserOutlined, LockFilled } from '@ant-design/icons';
 import { Button, Form, Input, Typography } from 'antd';
 import { styles } from './styles';
@@ -10,39 +10,23 @@ export default function RegisterPage() {
     console.log('Success:', values);
     navigate('/todopage');
     localStorage.setItem('register', JSON.stringify(values));
-    const url = 'https://first-node-js-app-r.herokuapp.com/api/users/register';
-    fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: {
-        name: 'Armin',
-        username: 'Armin2023',
-        email: 'trancefamily2023@example.com',
-        isMan: false,
-        age: 41,
-        ID: '63de85f5494f1da8068a9777'
-      }
-    });
-
+    // const url = 'https://first-node-js-app-r.herokuapp.com/api/users/register';
+    // fetch(url, {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: {
+    //     name: 'Armin',
+    //     username: 'Armin2023',
+    //     email: 'trancefamily2023@example.com',
+    //     isMan: false,
+    //     age: 41,
+    //     ID: '63de85f5494f1da8068a9777'
+    //   }
+    // });
+//"password": "ArmiN_23",
 
   };
-  // const onRegistry = async () => {
-  // const url = 'https://first-node-js-app-r.herokuapp.com/api/users/register';
-  // const result = await fetch(url, {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: {
-  //     name: 'Armin',
-  //     username: 'Armin2023',
-  //     email: 'trancefamily2023@example.com',
-  //     isMan: false,
-  //     age: 41,
-  //     ID: '63de85f5494f1da8068a9777'
-  //   }
-  // });
-  // const data = await result.json();
-  // console.log(data);
-  // };
+
   return (
     <div>
       <Typography.Title style={styles.title} type="success">
@@ -95,6 +79,7 @@ export default function RegisterPage() {
           >
             Log in
           </Button>{' '}
+          Or <Link style={styles.a} to="/registry">register now!</Link>
         </Form.Item>
       </Form>
     </div>

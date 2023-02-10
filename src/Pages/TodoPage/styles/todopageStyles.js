@@ -4,7 +4,6 @@ export const contentStyle = {
   minHeight: 120,
   lineHeight: '50px',
   color: '#fff',
-  // backgroundColor: 'lime'
 };
 export const inputStyle = {
 width:600,
@@ -15,9 +14,8 @@ marginRight:'10px'
 export const layoutStyle = {
   height: '100vh', 
   overflow: 'auto', 
-  marginTop: '15px',
+  margin:'10px 0px 10px 0px',
   marginBottom: '15px',
-  // backgroundColor: 'red'
 };
 export const mainSpaceStyle = {
   width: '800px'
