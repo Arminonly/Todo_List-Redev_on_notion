@@ -1,100 +1,194 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import axios from 'axios';
+import { Button, Col, Form, Input, InputNumber, Row, Select } from 'antd';
+const { Option } = Select;
+
+const formItemLayout = {
+  labelCol: {
+    xs: {
+      span: 24
+    },
+    sm: {
+      span: 8
+    }
+  },
+  wrapperCol: {
+    xs: {
+      span: 24
+    },
+    sm: {
+      span: 16
+    }
+  }
+};
+const tailFormItemLayout = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0
+    },
+    sm: {
+      span: 16,
+      offset: 8
+    }
+  }
+};
+// import { Link } from 'react-router-dom';
+
 export default function Registry() {
-  const [data, setData] = useState({
-    name: '',
-    userName: '',
-    email: '',
-    password: '',
-    age: 0
-  });
+  const [form] = Form.useForm();
+  const onGenderChange = (value) => {
+    switch (value) {
+      case 'male':
+        form.setFieldsValue({
+          note: 'Hi, man!'
+        });
+        break;
+      case 'female':
+        form.setFieldsValue({
+          note: 'Hi, lady!'
+        });
 
-  const sendRequest = e => {
-    e.preventDefault();
+        break;
+      default:
+    }
+  };
+  const onFinish = (values,e) => {
+    // e.preventDefault();
     const url = 'https://first-node-js-app-r.herokuapp.com/api/users/register';
-
-    axios
-      .post(url, {
-        name: data.name,
-        userName: data.userName,
-        email: data.email,
-        password: data.password,
-        age: +data.age
-      })
-      .then(response => {
-        console.log(response.data);
-      });
+  fetch(url,{
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(values)
+  })
+    
+    localStorage.setItem(values, JSON.stringify(values));
+    console.log('Received values of form: ', values);
   };
 
   return (
-    <div>
+    <>
       <h1>Registry</h1>
-      <form onSubmit={sendRequest}>
-        <label htmlFor="name">
-          {' '}name:
-          <div>
-            <input
-              id="name"
-              type="text"
-              value={data.name}
-              onChange={e => setData(e.target.value)}
-            />
-          </div>
-        </label>
-        <label htmlFor="userName">
-          user name:
-          <div>
-            <input
-              id="userName"
-              type="text"
-              value={data.userName}
-              onChange={e => setData(e.target.value)}
-            />
-          </div>
-        </label>
-        <label htmlFor="email">
-          email:
-          <div>
-            <input
-              id="email"
-              type="email"
-              value={data.email}
-              onChange={e => setData(e.target.value)}
-            />
-          </div>
-        </label>
-        <label htmlFor="password">
-          password:
-          <div>
-            <input
-              id="password"
-              type="password"
-              value={data.password}
-              onChange={e => setData(e.target.value)}
-            />
-          </div>
-        </label>
+      <Row wrap={false}>
+        <Col flex="auto">
+          <Form
+            {...formItemLayout}
+            form={form}
+            name="register"
+            onFinish={onFinish}
+            // initialValues={{
+            //   residence: ['zhejiang', 'hangzhou', 'xihu'],
+            //   prefix: '86'
+            // }}
+            style={{
+              maxWidth: 600
+            }}
+            scrollToFirstError
+          >
+            <Form.Item
+              name="name"
+              label="Name"
+              tooltip="Enter your name"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your name!',
+                  whitespace: true
+                }
+              ]}
+            >
+              <Input />
+            </Form.Item>
 
-        <label htmlFor="age">
-          age:
-          <div>
-            <input
-              id="age"
-              type="age"
-              value={data.age}
-              onChange={e => setData(e.target.value)}
-            />
-          </div>
-        </label>
-        <button>registry</button>
-      </form>
-      <div>
-        <p>
-          or return to &nbsp;<Link to="/">log in</Link>&nbsp; page
-        </p>
-      </div>
-    </div>
+            <Form.Item
+              name="username"
+              label="Username"
+              tooltip="What do you want others to call you?"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your username!',
+                  whitespace: true
+                }
+              ]}
+            >
+              <Input />
+            </Form.Item>
+
+            <Form.Item
+              name="email"
+              label="E-mail"
+              rules={[
+                {
+                  type: 'email',
+                  message: 'The input is not valid E-mail!'
+                },
+                {
+                  required: true,
+                  message: 'Please input your E-mail!'
+                }
+              ]}
+            >
+              <Input />
+            </Form.Item>
+
+            <Form.Item
+              name="password"
+              label="Password"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your password!'
+                }
+              ]}
+              hasFeedback
+            >
+              <Input.Password />
+            </Form.Item>
+
+            <Form.Item
+              name="gender"
+              label="Gender"
+              rules={[
+                {
+                  required: true
+                }
+              ]}
+            >
+              <Select
+                placeholder="Select your gender"
+                onChange={onGenderChange}
+                allowClear
+              >
+                <Option value="male">male</Option>
+                <Option value="female">female</Option>
+              </Select>
+            </Form.Item>
+
+            <Form.Item
+              name="age"
+              label="Age"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your age!'
+                }
+              ]}
+            >
+              <InputNumber />
+            </Form.Item>
+
+            <Form.Item {...tailFormItemLayout}>
+              <Button type="primary" htmlType="submit">
+                Register
+              </Button>
+             <span>&nbsp;</span> Or <Link  to="/">return home</Link>
+            </Form.Item>
+          </Form>
+        </Col>
+      </Row>
+    </>
   );
 }
