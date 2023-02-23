@@ -85,6 +85,7 @@ const Todopage = () => {
           </Space>
           <div style={{ margin: '10px auto' }}>
             <TodoItems
+          
               todos={todos}
               editTodo={editTodo}
               deleteTodo={deleteTodo}

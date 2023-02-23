@@ -4,8 +4,6 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import s from './todoItems.module.css';
 export default function TodoItems({todos,editTodo,deleteTodo,completedTodo}) {
-
-
   return (
     <>
       {todos && todos.length ? (

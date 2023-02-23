@@ -1,30 +1,33 @@
 import React from 'react';
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { UserOutlined, LockFilled } from '@ant-design/icons';
 import { Button, Form, Input, Typography } from 'antd';
 import { styles } from './styles';
 
-export default function RegisterPage() {
+export default function LoginPage() {
   const navigate = useNavigate();
   const onFinish = values => {
-    console.log('Success:', values);
-    navigate('/todopage');
-    localStorage.setItem('register', JSON.stringify(values));
-    // const url = 'https://first-node-js-app-r.herokuapp.com/api/users/register';
-    // fetch(url, {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: {
-    //     name: 'Armin',
-    //     username: 'Armin2023',
-    //     email: 'trancefamily2023@example.com',
-    //     isMan: false,
-    //     age: 41,
-    //     ID: '63de85f5494f1da8068a9777'
-    //   }
-    // });
-//"password": "ArmiN_23",
+    const url = 'https://first-node-js-app-r.herokuapp.com/api/auth/login';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authentication:
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNpbmNlcmVAYXByaWwuYml6IiwiSUQiOiI2M2Y2ODE3MzJjMzFmZDRmOTM4MTg3NDEiLCJpYXQiOjE2NzcwOTk1ODZ9.06nLFDosrH3NHuYamqxSA6xQo1dnMveIlQvgDr3Q-Tg'
+      },
+      body: JSON.stringify(values)
+    })
+      .then(response => {
+        response.json();
+        localStorage.setItem('Authorization', response.token);
+      })
+      .then(result => {
+        navigate('/todopage');
+      });
 
+    console.log('Success:', values);
+    localStorage.setItem('login', JSON.stringify(values));
+    // navigate('/todopage');
   };
 
   return (
@@ -39,7 +42,7 @@ export default function RegisterPage() {
         onFinish={onFinish}
       >
         <Form.Item
-          name="username"
+          name="email"
           rules={[
             {
               required: true,
@@ -50,7 +53,7 @@ export default function RegisterPage() {
           <Input
             style={styles.input}
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Логин"
+            placeholder="email"
           />
         </Form.Item>
         <Form.Item
@@ -79,7 +82,10 @@ export default function RegisterPage() {
           >
             Log in
           </Button>{' '}
-          Or <Link style={styles.a} to="/registry">register now!</Link>
+          Or{' '}
+          <Link style={styles.a} to="/registry">
+            register now!
+          </Link>
         </Form.Item>
       </Form>
     </div>

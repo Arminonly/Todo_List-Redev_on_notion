@@ -1,9 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-
-import axios from 'axios';
-import { Button, Col, Form, Input, InputNumber, Row, Select } from 'antd';
-const { Option } = Select;
+import { useNavigate, Link } from 'react-router-dom';
+import { Button, Col, Form, Input, InputNumber, Row, Radio } from 'antd';
 
 const formItemLayout = {
   labelCol: {
@@ -35,39 +32,34 @@ const tailFormItemLayout = {
     }
   }
 };
-// import { Link } from 'react-router-dom';
 
 export default function Registry() {
-  const [form] = Form.useForm();
-  const onGenderChange = (value) => {
-    switch (value) {
-      case 'male':
-        form.setFieldsValue({
-          note: 'Hi, man!'
-        });
-        break;
-      case 'female':
-        form.setFieldsValue({
-          note: 'Hi, lady!'
-        });
-
-        break;
-      default:
-    }
+  // const navigate = useNavigate();
+  const [value, setValue] = useState(true);
+  const onChange = (e) => {
+    console.log('radio checked', e.target.value);
+    setValue(e.target.value);
   };
-  const onFinish = (values,e) => {
-    // e.preventDefault();
+  const [form] = Form.useForm();
+  const onFinish = (values) => {
     const url = 'https://first-node-js-app-r.herokuapp.com/api/users/register';
-  fetch(url,{
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(values)
-  })
-    
+     fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+    }).then(resp => resp.json())
+   .then(json => console.log(JSON.stringify(json)))
+   .catch(error => console.error(error));
+
     localStorage.setItem(values, JSON.stringify(values));
     console.log('Received values of form: ', values);
   };
 
+  const onReset = () => {
+    form.resetFields();
+  };
   return (
     <>
       <h1>Registry</h1>
@@ -78,12 +70,8 @@ export default function Registry() {
             form={form}
             name="register"
             onFinish={onFinish}
-            // initialValues={{
-            //   residence: ['zhejiang', 'hangzhou', 'xihu'],
-            //   prefix: '86'
-            // }}
             style={{
-              maxWidth: 600
+              maxWidth: 800
             }}
             scrollToFirstError
           >
@@ -101,7 +89,6 @@ export default function Registry() {
             >
               <Input />
             </Form.Item>
-
             <Form.Item
               name="username"
               label="Username"
@@ -116,7 +103,6 @@ export default function Registry() {
             >
               <Input />
             </Form.Item>
-
             <Form.Item
               name="email"
               label="E-mail"
@@ -133,7 +119,6 @@ export default function Registry() {
             >
               <Input />
             </Form.Item>
-
             <Form.Item
               name="password"
               label="Password"
@@ -147,26 +132,20 @@ export default function Registry() {
             >
               <Input.Password />
             </Form.Item>
-
             <Form.Item
-              name="gender"
-              label="Gender"
+              name="isMan"
+              label="isMan"
               rules={[
                 {
                   required: true
                 }
               ]}
             >
-              <Select
-                placeholder="Select your gender"
-                onChange={onGenderChange}
-                allowClear
-              >
-                <Option value="male">male</Option>
-                <Option value="female">female</Option>
-              </Select>
+              <Radio.Group onChange={onChange} value={value}>
+                <Radio value={false}>male</Radio>
+                <Radio value={true}>female</Radio>
+              </Radio.Group>
             </Form.Item>
-
             <Form.Item
               name="age"
               label="Age"
@@ -179,12 +158,20 @@ export default function Registry() {
             >
               <InputNumber />
             </Form.Item>
-
             <Form.Item {...tailFormItemLayout}>
               <Button type="primary" htmlType="submit">
                 Register
               </Button>
-             <span>&nbsp;</span> Or <Link  to="/">return home</Link>
+              <span>&nbsp;</span>
+              <span>&nbsp;</span>
+              <span>&nbsp;</span>
+              <Button htmlType="button" onClick={onReset}>
+                Reset
+              </Button>
+              <span>&nbsp;</span>{' '}
+              <p>
+                back to <Link to="/">Log in</Link>
+              </p>
             </Form.Item>
           </Form>
         </Col>

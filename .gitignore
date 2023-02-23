@@ -22,25 +22,28 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# registry from swagger
-# {
-#   "username": "Armin23",
-#   "email": "armin23@example.com",
-#   "isMan": true,
-#   "age": 41,
-#   "ID": "63de9c18494f1da8068a9808"
-# }
-#  "password": "ArmiN_23",
 
-# Request URL
+#  *"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFybWlub25seTIwMjNAZXhhbXBsZS5jb20iLCJJRCI6IjYzZjRmOTM5ZmZhMDExM2RlMGNlMjk5NCIsImlhdCI6MTY3NzAwMTcxNH0.khhpozC4ZztlYXxqz0ooQFRXqNwayXNnGKzBlgcCMr8"
+
+#  *'https://first-node-js-app-r.herokuapp.com/api/auth/login'
+
+#  !registry
+#  email:"arminOnly2023@example.com"
+#  name:"Armin"
+#  username:"ArminOnly2023"
+#  password :"Qw1-2qwerty"
+
+# //* ================================================================
+# "name": Leanne Graham
+#   "username": "Bret",
+# 
+#   "isMan": true,
+#   "age": 40,
+#   "ID": "63f681732c31fd4f93818741" 
+#   "email": sincere@april.biz
+#  password: 1Sq_22qw
+
 # https://first-node-js-app-r.herokuapp.com/api/users/register
 
 
-#    "name": "Sergey",
-#   "username": "Sergey2023",
-#   "email": "trance2023@gmail.com",
-#   "password": "1Sq_22qw",
-#   "isMan": true,
-#   "age": 41
-
-#   "ID": "63f0affba62726cc4a2ac2c6"
+# "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNpbmNlcmVAYXByaWwuYml6IiwiSUQiOiI2M2Y2ODE3MzJjMzFmZDRmOTM4MTg3NDEiLCJpYXQiOjE2NzcwOTk1ODZ9.06nLFDosrH3NHuYamqxSA6xQo1dnMveIlQvgDr3Q-Tg"
