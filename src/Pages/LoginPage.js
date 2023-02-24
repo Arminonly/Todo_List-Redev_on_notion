@@ -5,10 +5,10 @@ import { Button, Form, Input, Typography } from 'antd';
 import { styles } from './styles';
 
 export default function LoginPage() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const onFinish = values => {
     const url = 'https://first-node-js-app-r.herokuapp.com/api/auth/login';
-    fetch(url, {
+  fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -16,18 +16,15 @@ export default function LoginPage() {
           'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNpbmNlcmVAYXByaWwuYml6IiwiSUQiOiI2M2Y2ODE3MzJjMzFmZDRmOTM4MTg3NDEiLCJpYXQiOjE2NzcwOTk1ODZ9.06nLFDosrH3NHuYamqxSA6xQo1dnMveIlQvgDr3Q-Tg'
       },
       body: JSON.stringify(values)
-    })
-      .then(response => {
-        response.json();
-        localStorage.setItem('Authorization', response.token);
-      })
-      .then(result => {
-        navigate('/todopage');
-      });
+    });
+    const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNpbmNlcmVAYXByaWwuYml6IiwiSUQiOiI2M2Y2ODE3MzJjMzFmZDRmOTM4MTg3NDEiLCJpYXQiOjE2NzcwOTk1ODZ9.06nLFDosrH3NHuYamqxSA6xQo1dnMveIlQvgDr3Q-Tg'
 
-    console.log('Success:', values);
+    localStorage.setItem('token', token);
     localStorage.setItem('login', JSON.stringify(values));
+    console.log('Success:', values);
     // navigate('/todopage');
+    
+    
   };
 
   return (
